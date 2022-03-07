@@ -12,7 +12,7 @@ nvm install node
 node -e "console.log('Running Node.js ' + process.version)"
 npm install -g aws-cdk
 yum install -g git
-npm install -g typescript
+npm install typescript
 aws configure
 ```
 
