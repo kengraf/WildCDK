@@ -26,6 +26,6 @@ npm install
 # Build the use case
 npm run build
 # Deploy the use case
-cdk deploy
+cdk deploy --all
 
 ```
