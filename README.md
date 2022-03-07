@@ -11,6 +11,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 nvm install node
 node -e "console.log('Running Node.js ' + process.version)"
 npm install -g aws-cdk
+npm install -g aws-cdk-lib
 npm install -g typescript
 aws configure
 ```
