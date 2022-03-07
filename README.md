@@ -6,12 +6,12 @@ Cloudshell environment fails due to the inability to use spawn
 Debian instructions
 ```
 sudo -i
+yum install git
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
 node -e "console.log('Running Node.js ' + process.version)"
-npm install -g aws-cdk
-yum install -g git
+npm install aws-cdk
 npm install typescript
 aws configure
 ```
