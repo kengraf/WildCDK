@@ -8,7 +8,7 @@ Cloudshell environment fails due to the 1GB space limit
 #### Cloudshell commands to create AWS EC2 instance to run the CDK
 ```
 AMI=ami-08b6f2a5c291246a0 # AWS instance March 8, 2022
-TYPE=t2.micro
+TYPE=t2.medium # Slow but a t2.micro will work
 KEYNAME=ohio # EDIT this for your value
 SG=sg-05a87a5fbfd0fd5ae # EDIT this for your value
 INSTANCE_ID=`aws ec2 run-instances --image-id $AMI --count 1 \
