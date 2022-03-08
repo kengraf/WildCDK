@@ -2,8 +2,26 @@
 CDK implementation of WildRydes
 
 ## AWS CDK approach
-Cloudshell environment fails due to the inability to use spawn.  
-AWS EC2 instance instructions
+Cloudshell environment fails due to the 1GB space limit
+
+
+#### Cloudshell commands to create AWS EC2 instance to run the CDK
+```
+AMI=ami-08b6f2a5c291246a0 # AWS instance March 8, 2022
+TYPE=t2.micro
+KEYNAME=ohio # EDIT this for your value
+SG=sg-05a87a5fbfd0fd5ae # EDIT this for your value
+INSTANCE_ID=`aws ec2 run-instances --image-id $AMI --count 1 --instance-type $TYPE \
+  --key-name $KEYNAME --security-groups $SG --ouput text \
+  --query 'Instances[0].InstanceId'`
+aws iam attach-role-policy --role-name FullAdminRole --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+aws iam create-instance-profile --instance-profile-name FullAdminRole2
+aws iam add-role-to-instance-profile --role-name FullAdminRole --instance-profile-name FullAdminRole2
+aws ec2 associate-iam-instance-profile --instance-id YourInstanceId --iam-instance-profile Name=FullAdminRole2
+```
+  --iam-instance-profile (
+
+#### SSH to the newly created instance
 ```
 sudo yum install -y git
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
@@ -13,7 +31,11 @@ node -e "console.log('Running Node.js ' + process.version)"
 npm install -g aws-cdk
 npm install -g aws-cdk-lib
 npm install -g typescript
-aws configure
+ACCTID=`aws sts get-caller-identity --query "Account" --output text`
+REGION=`aws ec2 describe-availability-zones --output text \
+  --query 'AvailabilityZones[0].[RegionName]'`
+cdk bootstrap $ACCTID/$REGION
+cdk acknowledge 19179
 ```
 
 ```
@@ -27,6 +49,19 @@ npm install
 # Build the use case
 npm run build
 # Deploy the use case
+cdk synth
 cdk deploy --all
 
 ```
+The deploy command will push two stacks: S3StaticWebsiteStack and ServerlessBackendStack.  
+The CloudFormation "S3StaticWebsiteStack" ouput "websiteURL" is the entry point to the app: https://'your-cf-id'.cloudfront.net
+
+### Clean up
+```
+cdk destroy --all
+```
+Take down the EC2 command instance
+```
+aws 
+```
+
