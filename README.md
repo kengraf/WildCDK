@@ -11,15 +11,17 @@ AMI=ami-08b6f2a5c291246a0 # AWS instance March 8, 2022
 TYPE=t2.micro
 KEYNAME=ohio # EDIT this for your value
 SG=sg-05a87a5fbfd0fd5ae # EDIT this for your value
-INSTANCE_ID=`aws ec2 run-instances --image-id $AMI --count 1 --instance-type $TYPE \
-  --key-name $KEYNAME --security-groups $SG --ouput text \
-  --query 'Instances[0].InstanceId'`
-aws iam attach-role-policy --role-name FullAdminRole --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
-aws iam create-instance-profile --instance-profile-name FullAdminRole2
-aws iam add-role-to-instance-profile --role-name FullAdminRole --instance-profile-name FullAdminRole2
-aws ec2 associate-iam-instance-profile --instance-id YourInstanceId --iam-instance-profile Name=FullAdminRole2
+INSTANCE_ID=`aws ec2 run-instances --image-id $AMI --count 1 \
+  --instance-type $TYPE --key-name $KEYNAME --security-group-ids $SG \
+  --otuput text --query 'Instances[0].InstanceId'`
+aws iam attach-role-policy --role-name FullAdminRole \
+  --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
+aws iam create-instance-profile --instance-profile-name FullAdminRole
+aws iam add-role-to-instance-profile --role-name FullAdminRole \
+  --instance-profile-name FullAdminRole
+aws ec2 associate-iam-instance-profile --instance-id $INSTANCE_ID \
+  --iam-instance-profile Name=FullAdminRole
 ```
-  --iam-instance-profile (
 
 #### SSH to the newly created instance
 ```
