@@ -5,7 +5,7 @@ CDK implementation of WildRydes
 Cloudshell environment fails due to the inability to use spawn.  
 AWS EC2 instance instructions
 ```
-yum install -y git
+sudo yum install -y git
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.34.0/install.sh | bash
 . ~/.nvm/nvm.sh
 nvm install node
