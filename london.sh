@@ -1,0 +1,6 @@
+```
+AMI=ami-034ef92d9dd822b08 # AWS instance March 8, 2022
+TYPE=t2.medium 
+KEYNAME=london2
+SG=sg-003cef736793bfe67
+```
