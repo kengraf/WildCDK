@@ -4,9 +4,9 @@ CDK implementation of WildRydes
 ## AWS CDK approach
 Cloudshell environment fails due to the 1GB space limit
 
-Set regional value for creating an instance.  Examples of my settings
-[Ohio](https://raw.githubusercontent.com/kengraf/WildCDK/main/ohio.settings)
-[London](https://raw.githubusercontent.com/kengraf/WildCDK/main/london.settings)
+Set regional value for creating an instance.  Examples of my settings  
+[Ohio](https://raw.githubusercontent.com/kengraf/WildCDK/main/ohio.settings)  
+[London](https://raw.githubusercontent.com/kengraf/WildCDK/main/london.settings)  
 
 #### Cloudshell commands to create AWS EC2 instance to run the CDK
 ```
