@@ -4,16 +4,15 @@ CDK implementation of WildRydes
 ## AWS CDK approach
 Cloudshell environment fails due to the 1GB space limit
 
+Set regional value for creating an instance.  Examples of my settings
+[Ohio]()
+[London]()
 
 #### Cloudshell commands to create AWS EC2 instance to run the CDK
 ```
-AMI=ami-08b6f2a5c291246a0 # AWS instance March 8, 2022
-TYPE=t2.medium # Slow but a t2.micro will work
-KEYNAME=ohio # EDIT this for your value
-SG=sg-05a87a5fbfd0fd5ae # EDIT this for your value
 INSTANCE_ID=`aws ec2 run-instances --image-id $AMI --count 1 \
   --instance-type $TYPE --key-name $KEYNAME --security-group-ids $SG \
-  --output text --query 'Instances[0].InstanceId'`
+  --region $REGION --output text --query 'Instances[0].InstanceId'`
 aws iam attach-role-policy --role-name FullAdminRole \
   --policy-arn arn:aws:iam::aws:policy/AdministratorAccess
 aws iam create-instance-profile --instance-profile-name FullAdminRole
