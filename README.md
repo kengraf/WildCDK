@@ -19,7 +19,7 @@ aws iam create-instance-profile --instance-profile-name FullAdminRole
 aws iam add-role-to-instance-profile --role-name FullAdminRole \
   --instance-profile-name FullAdminRole
 aws ec2 associate-iam-instance-profile --instance-id $INSTANCE_ID \
-  --iam-instance-profile Name=FullAdminRole
+  --iam-instance-profile Name=FullAdminRole --region $REGION
 ```
 
 #### SSH to the newly created instance
@@ -69,6 +69,6 @@ cdk destroy --all
 
 ```
 # Use Cloudshell to take down the EC2 command instance
-aws terminate-instances --instance-ids $INSTANCE_ID
+aws terminate-instances --instance-ids $INSTANCE_ID --region $REGION
 ```
 
