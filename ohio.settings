@@ -2,3 +2,4 @@ AMI=ami-08b6f2a5c291246a0 # AWS instance March 8, 2022
 TYPE=t2.medium # Slow but a t2.micro will work
 KEYNAME=ohio # EDIT this for your value
 SG=sg-05a87a5fbfd0fd5ae # EDIT this for your value
+REGION=us-east-2
